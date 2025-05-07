@@ -1,0 +1,2 @@
+annualized_return,volatility,sharpe_ratio,max_drawdown,optimal_weights
+0.1661165171997545,0.14987491994116503,1.108367679295277,0.2566306755265101,"[0.5, 0.5]"

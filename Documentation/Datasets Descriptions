@@ -1,0 +1,624 @@
+
+Processing File: 12-month percentage change, Consumer Price Index, selected categories, not seasonal
+ly adjusted.xlsx                                                                                    Sheet Names: ['Sheet1']
+
+  Analyzing Sheet: Sheet1
+  First 5 rows:
+       Month  All items   Food  ...  Shelter  Medical care services  Education and communication
+0 2008-01-01      0.043  0.049  ...    0.031                  0.057                        0.034
+1 2008-02-01      0.040  0.046  ...    0.029                  0.050                        0.032
+2 2008-03-01      0.040  0.045  ...    0.029                  0.048                        0.030
+3 2008-04-01      0.039  0.051  ...    0.026                  0.047                        0.032
+4 2008-05-01      0.042  0.051  ...    0.026                  0.047                        0.030
+
+[5 rows x 18 columns]
+
+  Basic Statistics:
+                     Month   All items  ...  Medical care services  Education and communication
+count                  180  180.000000  ...             180.000000                   180.000000
+mean   2015-06-16 20:32:00    0.023478  ...               0.032656                     0.012411
+min    2008-01-01 00:00:00   -0.021000  ...               0.008000                    -0.026000
+25%    2011-09-23 12:00:00    0.012000  ...               0.025000                     0.006750
+50%    2015-06-16 00:00:00    0.018500  ...               0.031500                     0.014000
+75%    2019-03-08 18:00:00    0.027250  ...               0.038250                     0.019000
+max    2022-12-01 00:00:00    0.091000  ...               0.065000                     0.037000
+std                    NaN    0.021282  ...               0.010973                     0.012899
+
+[8 rows x 18 columns]
+
+  Missing Values:
+Month                                           0
+All items                                       0
+Food                                            0
+Food at home                                    0
+Food away from home                             0
+Energy                                          0
+Gasoline (all types)                            0
+Electricity                                     0
+Natural gas (piped)                             0
+All items less food and energy                  0
+Commodities less food and energy commodities    0
+Apparel                                         0
+New vehicles                                    0
+Medical care commodities                        0
+Services less energy services                   0
+Shelter                                         0
+Medical care services                           0
+Education and communication                     0
+dtype: int64
+
+Processing File: histretSP.xlsx
+Sheet Names: ['Explanations and FAQ', 'Returns by year', 'S&P 500 & Raw Data', 'Small Cap', 'T. Bond
+ yield & return', 'T. Bill rates', 'Inflation Rate', 'Summary for ppt', 'Home Prices (Raw Data)', "Moody's Rates", 'Home Prices', 'Gold Prices', 'Sheet10', 'Sheet11', 'Sheet12', 'Sheet13', 'Sheet14', 'Sheet15', 'Sheet16']                                                                               
+  Analyzing Sheet: Explanations and FAQ
+  First 5 rows:
+                       End Game My objective in this spreadsheet is to compute the annual returns yo
+u would have earned on major financial asset classses, on an annual basis, inclusive of both cash payout during the year and the price appreciation.                                                    0                           NaN                                                NaN                  
+                                                                                                                                                                                                        1  Explanations, by asset class                                                NaN                  
+                                                                                                                                                                                                        2            Stocks (Large Cap)  I use the S&P 500, which was created in 1957, ...                  
+                                                                                                                                                                                                        3            Stocks (Small Cap)  I use the bottom decile of US stocks, as estim...                  
+                                                                                                                                                                                                        4                     US T.Bond  I use the 10-year US treasury bond, since it i...                  
+                                                                                                                                                                                                        
+  Basic Statistics:
+                            End Game My objective in this spreadsheet is to compute the annual retur
+ns you would have earned on major financial asset classses, on an annual basis, inclusive of both cash payout during the year and the price appreciation.                                               count                             17                                                 15             
+                                                                                                                                                                                                        unique                            17                                                 15             
+                                                                                                                                                                                                        top     Explanations, by asset class  I use the S&P 500, which was created in 1957, ...             
+                                                                                                                                                                                                        freq                               1                                                  1             
+                                                                                                                                                                                                        
+  Missing Values:
+End Game                                                                                            
+                                                                                                                        2                                                                               My objective in this spreadsheet is to compute the annual returns you would have earned on major fin
+ancial asset classses, on an annual basis, inclusive of both cash payout during the year and the price appreciation.    4                                                                               dtype: int64
+
+  Analyzing Sheet: Returns by year
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+                 Date updated:  ... Unnamed: 36
+0                  Created by:  ...         NaN
+1           What is this data?  ...         NaN
+2                   Home Page:  ...         NaN
+3                Data website:  ...         NaN
+4  Companies in each industry:  ...         NaN
+
+[5 rows x 37 columns]
+
+  Basic Statistics:
+       Date updated:  ...           Unnamed: 36
+count            123  ...                    98
+unique           120  ...                    98
+top        2015-2024  ...  Stocks minus T.Bonds
+freq               2  ...                     1
+
+[4 rows x 37 columns]
+
+  Missing Values:
+Date updated:           6
+2025-01-01 00:00:00    18
+Unnamed: 2             25
+Unnamed: 3             23
+Unnamed: 4             19
+Unnamed: 5             25
+Unnamed: 6             24
+Unnamed: 7             25
+Unnamed: 8             29
+Unnamed: 9             31
+Unnamed: 10            31
+Unnamed: 11            21
+Unnamed: 12            23
+Unnamed: 13            26
+Unnamed: 14            27
+Unnamed: 15            30
+Unnamed: 16            21
+Unnamed: 17            27
+Unnamed: 18            31
+Unnamed: 19            63
+Unnamed: 20            22
+Unnamed: 21            24
+Unnamed: 22            24
+Unnamed: 23            24
+Unnamed: 24            24
+Unnamed: 25            24
+Unnamed: 26            24
+Unnamed: 27            24
+Unnamed: 28            30
+Unnamed: 29            31
+Unnamed: 30            31
+Unnamed: 31            31
+Unnamed: 32            31
+Unnamed: 33            26
+Unnamed: 34            27
+Unnamed: 35            30
+Unnamed: 36            31
+dtype: int64
+
+  Analyzing Sheet: S&P 500 & Raw Data
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+  Unnamed: 0 Unnamed: 1 Unnamed: 2  ...     Unnamed: 8      Unnamed: 9             Unnamed: 10
+0       Year    S&P 500  Dividends  ...  Baa Bond Rate  Return on Baa   Returns on Real Estate
+1       1927      17.66     0.6181  ...         0.0532             NaN                     NaN
+2       1928      24.35    1.04705  ...          0.056        0.032196                0.014911
+3       1929      21.45    0.87945  ...         0.0595        0.030179               -0.020568
+4       1930      15.34    0.72098  ...         0.0671        0.005398                  -0.043
+
+[5 rows x 11 columns]
+
+  Basic Statistics:
+       Unnamed: 0  Unnamed: 1 Unnamed: 2  ...  Unnamed: 8      Unnamed: 9             Unnamed: 10
+count          99        99.0         99  ...     99.0000              98                      98
+unique         99        98.0         99  ...     94.0000              98                      98
+top          Year        15.3  Dividends  ...      0.0485  Return on Baa   Returns on Real Estate
+freq            1         2.0          1  ...      2.0000               1                       1
+
+[4 rows x 11 columns]
+
+  Missing Values:
+Unnamed: 0     0
+Unnamed: 1     0
+Unnamed: 2     0
+Unnamed: 3     0
+Unnamed: 4     0
+Unnamed: 5     1
+Unnamed: 6     0
+Unnamed: 7     1
+Unnamed: 8     0
+Unnamed: 9     1
+Unnamed: 10    1
+dtype: int64
+
+  Analyzing Sheet: Small Cap
+  First 5 rows:
+   Year  Return  Unnamed: 2
+0  1928  0.5991       59.91
+1  1929 -0.4661      -46.61
+2  1930 -0.5003      -50.03
+3  1931 -0.4466      -44.66
+4  1932  0.2049       20.49
+
+  Basic Statistics:
+              Year     Return  Unnamed: 2
+count    97.000000  97.000000   97.000000
+mean   1976.000000   0.175239   17.523918
+std      28.145456   0.379239   37.923867
+min    1928.000000  -0.532800  -53.280000
+25%    1952.000000  -0.058000   -5.800000
+50%    1976.000000   0.164900   16.490000
+75%    2000.000000   0.347300   34.730000
+max    2024.000000   1.483400  148.340000
+
+  Missing Values:
+Year          0
+Return        0
+Unnamed: 2    0
+dtype: int64
+
+  Analyzing Sheet: T. Bond yield & return
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+   Bond used:        US treasury 10-year bond at end of each year Unnamed: 2
+0      Source:                Federal Reserve of St. Louis (FRED)        NaN
+1  Computation  To compute the return on a constant maturity b...        NaN
+2          NaN  The return on the 10-year bond for 1928 = 3.17...        NaN
+3          NaN                                                NaN        NaN
+4          NaN                                                NaN        NaN
+
+  Basic Statistics:
+       Bond used:   US treasury 10-year bond at end of each year      Unnamed: 2
+count          101                                      102.0000              98
+unique         101                                       96.0000              98
+top        Source:                                        0.0259  Return on bond
+freq             1                                        2.0000               1
+
+  Missing Values:
+Bond used:                                      3
+US treasury 10-year bond at end of each year    2
+Unnamed: 2                                      6
+dtype: int64
+
+  Analyzing Sheet: T. Bill rates
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+                 FRED Graph Observations Unnamed: 1  Unnamed: 2
+0          Federal Reserve Economic Data        NaN         NaN
+1      Link: https://fred.stlouisfed.org        NaN         NaN
+2  Help: https://fredhelp.stlouisfed.org        NaN         NaN
+3             Economic Research Division        NaN         NaN
+4      Federal Reserve Bank of St. Louis        NaN         NaN
+
+  Basic Statistics:
+       Unnamed: 2
+count   91.000000
+mean     0.034103
+std      0.030697
+min      0.000327
+25%      0.004904
+50%      0.029971
+75%      0.051657
+max      0.140362
+
+  Missing Values:
+FRED Graph Observations     2
+Unnamed: 1                  7
+Unnamed: 2                 10
+dtype: int64
+
+  Analyzing Sheet: Inflation Rate
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+                      FRED Graph Observations Unnamed: 1  Unnamed: 2  Unnamed: 3  Unnamed: 4
+0               Federal Reserve Economic Data        NaN         NaN         NaN         NaN
+1           Link: https://fred.stlouisfed.org        NaN         NaN         NaN         NaN
+2  Help: https://fred.stlouisfed.org/help-faq        NaN         NaN         NaN         NaN
+3                  Economic Research Division        NaN         NaN         NaN         NaN
+4           Federal Reserve Bank of St. Louis        NaN         NaN         NaN         NaN
+
+  Basic Statistics:
+       Unnamed: 2  Unnamed: 3  Unnamed: 4
+count  111.000000         0.0   75.000000
+mean     0.032649         NaN    3.492402
+std      0.047692         NaN    2.848981
+min     -0.108247         NaN   -1.829520
+25%      0.013613         NaN    1.626370
+50%      0.026846         NaN    2.828430
+75%      0.042503         NaN    4.371945
+max      0.204380         NaN   13.254790
+
+  Missing Values:
+FRED Graph Observations      2
+Unnamed: 1                   8
+Unnamed: 2                  10
+Unnamed: 3                 121
+Unnamed: 4                  46
+dtype: int64
+
+  Analyzing Sheet: Summary for ppt
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+     Nominal          Unnamed: 1  ...         Unnamed: 9        Unnamed: 10
+0        NaN  Arithmetic Average  ...  Geometric Average                NaN
+1        NaN   Stocks - T. Bills  ...  Stocks - T. Bills  Stocks - T. Bonds
+2  1928-2024            0.084389  ...           0.064325           0.052791
+3  Std Error            0.020107  ...                NaN                NaN
+4  1975-2024            0.092527  ...           0.077321           0.059954
+
+[5 rows x 11 columns]
+
+  Basic Statistics:
+       Unnamed: 5
+count         0.0
+mean          NaN
+std           NaN
+min           NaN
+25%           NaN
+50%           NaN
+75%           NaN
+max           NaN
+
+  Missing Values:
+Nominal        2
+Unnamed: 1     0
+Unnamed: 2     1
+Unnamed: 3     3
+Unnamed: 4     4
+Unnamed: 5     8
+Real           2
+Unnamed: 7     0
+Unnamed: 8     1
+Unnamed: 9     3
+Unnamed: 10    4
+dtype: int64
+
+  Analyzing Sheet: Home Prices (Raw Data)
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+  Home Price data from Robert Shiller's website. Unnamed: 1  ... Unnamed: 6 Unnamed: 7
+0                                            NaN        NaN  ...        NaN        NaN
+1                                            NaN        NaN  ...        NaN        NaN
+2                                            NaN        NaN  ...        NaN        NaN
+3                                            NaN        NaN  ...        NaN        NaN
+4                                            NaN        NaN  ...        NaN        NaN
+
+[5 rows x 8 columns]
+
+  Basic Statistics:
+       Unnamed: 4  Unnamed: 7
+count         0.0   31.000000
+mean          NaN    0.037572
+std           NaN    0.056934
+min           NaN   -0.119956
+25%           NaN    0.012754
+50%           NaN    0.045071
+75%           NaN    0.069494
+max           NaN    0.136385
+
+  Missing Values:
+Home Price data from Robert Shiller's website.      7
+Unnamed: 1                                          7
+Unnamed: 2                                          8
+Unnamed: 3                                        142
+Unnamed: 4                                        143
+FRED Graph Observations                           100
+Unnamed: 6                                        106
+Unnamed: 7                                        112
+dtype: int64
+
+  Analyzing Sheet: Moody's Rates
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+                      FRED Graph Observations Unnamed: 1  ... Unnamed: 9  Unnamed: 10
+0               Federal Reserve Economic Data        NaN  ...        NaN          NaN
+1           Link: https://fred.stlouisfed.org        NaN  ...        NaN          NaN
+2  Help: https://fred.stlouisfed.org/help-faq        NaN  ...        NaN          NaN
+3                  Economic Research Division        NaN  ...        NaN          NaN
+4           Federal Reserve Bank of St. Louis        NaN  ...        NaN          NaN
+
+[5 rows x 11 columns]
+
+  Basic Statistics:
+       Unnamed: 3  Unnamed: 4  Unnamed: 5  Unnamed: 6  Unnamed: 7  Unnamed: 10
+count         0.0         0.0         0.0         0.0         0.0   106.000000
+mean          NaN         NaN         NaN         NaN         NaN     0.068175
+std           NaN         NaN         NaN         NaN         NaN     0.028054
+min           NaN         NaN         NaN         NaN         NaN     0.031000
+25%           NaN         NaN         NaN         NaN         NaN     0.048500
+50%           NaN         NaN         NaN         NaN         NaN     0.061950
+75%           NaN         NaN         NaN         NaN         NaN     0.083300
+max           NaN         NaN         NaN         NaN         NaN     0.165500
+
+  Missing Values:
+FRED Graph Observations        2
+Unnamed: 1                     8
+Unnamed: 2                     9
+Unnamed: 3                   116
+Unnamed: 4                   116
+Unnamed: 5                   116
+Unnamed: 6                   116
+Unnamed: 7                   116
+FRED Graph Observations.1      2
+Unnamed: 9                     8
+Unnamed: 10                   10
+dtype: int64
+
+  Analyzing Sheet: Home Prices
+  First 5 rows:
+    Unnamed: 0  ...                                     Unnamed: 4
+0  End of year  ...   http://www.econ.yale.edu//~shiller/data.htm 
+1         1927  ...                                            NaN
+2         1928  ...  https://fred.stlouisfed.org/series/CSUSHPINSA
+3         1929  ...                                            NaN
+4         1930  ...                                            NaN
+
+[5 rows x 5 columns]
+
+  Basic Statistics:
+         Unnamed: 0  Unnamed: 1  ...        Unnamed: 3                                    Unnamed: 4
+count            99   99.000000  ...                 2                                             2
+unique           99   98.000000  ...                 2                                             2
+top     End of year   14.492439  ...  Source of data:   http://www.econ.yale.edu//~shiller/data.htm 
+freq              1    2.000000  ...                 1                                             1
+
+[4 rows x 5 columns]
+
+  Missing Values:
+Unnamed: 0     0
+Unnamed: 1     0
+Unnamed: 2    98
+Unnamed: 3    97
+Unnamed: 4    97
+dtype: int64
+
+  Analyzing Sheet: Gold Prices
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+   Year  ...  Source for pre-1970: https://nma.org/wp-content/uploads/2016/09/historic_gold_prices_1
+833_pres.pdf (average price for year)                                                               0  1927  ...   Source for 1970-Current: LBMA Gold prices per oz                                     
+                                                                                                    1  1928  ...                                                NaN                                     
+                                                                                                    2  1929  ...                                                NaN                                     
+                                                                                                    3  1930  ...                                                NaN                                     
+                                                                                                    4  1931  ...                                                NaN                                     
+                                                                                                    
+[5 rows x 5 columns]
+
+  Basic Statistics:
+              Year  Price per oz  Unnamed: 2  Unnamed: 3
+count    98.000000     98.000000         0.0         0.0
+mean   1975.500000    407.247245         NaN         NaN
+std      28.434134    562.561654         NaN         NaN
+min    1927.000000     17.060000         NaN         NaN
+25%    1951.250000     34.842500         NaN         NaN
+50%    1975.500000    152.600000         NaN         NaN
+75%    1999.750000    430.762500         NaN         NaN
+max    2024.000000   2610.850000         NaN         NaN
+
+  Missing Values:
+Year                                                                                                
+                            0                                                                       Price per oz                                                                                        
+                            0                                                                       Unnamed: 2                                                                                          
+                           98                                                                       Unnamed: 3                                                                                          
+                           98                                                                       Source for pre-1970: https://nma.org/wp-content/uploads/2016/09/historic_gold_prices_1833_pres.pdf (
+average price for year)    97                                                                       dtype: int64
+
+  Analyzing Sheet: Sheet10
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  First 5 rows:
+     Year  S&P 500 (includes dividends)  3-month T.Bill  ...  Stocks  T. Bills  T. Bonds
+0  1928.0                      0.438112          0.0308  ...  0.1166    0.0334    0.0486
+1  1929.0                     -0.082979          0.0316  ...  0.0200    0.0031    0.0081
+2  1930.0                     -0.251236          0.0455  ...  0.1452    0.0294    0.0328
+3  1931.0                     -0.438375          0.0231  ...  0.1955    0.0301    0.0795
+4  1932.0                     -0.086424          0.0107  ...  2.9816    3.8457    4.6461
+
+[5 rows x 18 columns]
+
+  Basic Statistics:
+              Year  S&P 500 (includes dividends)  3-month T.Bill  ...     Stocks   T. Bills   T. Bon
+ds                                                                                                  count    96.000000                     96.000000       96.000000  ...  10.000000  10.000000  10.0000
+00                                                                                                  mean   1975.500000                      0.116578        0.033385  ...   0.336290   0.515680   0.5751
+00                                                                                                  std      27.856777                      0.195508        0.030075  ...   0.974914   1.210428   1.4497
+19                                                                                                  min    1928.000000                     -0.438375        0.000327  ...  -0.438400   0.000300  -0.1783
+00                                                                                                  25%    1951.750000                     -0.011935        0.008508  ...  -0.003925   0.013725   0.0142
+75                                                                                                  50%    1975.500000                      0.145211        0.029350  ...   0.130900   0.031750   0.0640
+50                                                                                                  75%    1999.250000                      0.259666        0.050642  ...   0.243650   0.117950   0.2674
+25                                                                                                  max    2023.000000                      0.525633        0.140362  ...   2.981600   3.845700   4.6461
+00                                                                                                  
+[8 rows x 17 columns]
+
+  Missing Values:
+Year                                       2
+S&P 500 (includes dividends)               2
+3-month T.Bill                             2
+US T. Bond (10-year)                       2
+Inflation Rate                             1
+S&P 500 (Real)                             2
+T. Bill (Real)                             2
+T.Bond (Real)                              2
+Year.1                                     2
+Nominal value of $100 invested in 1928     2
+Real value of $100 invested in 1928        2
+Unnamed: 11                               98
+Unnamed: 12                               98
+Unnamed: 13                               98
+Unnamed: 14                               88
+Stocks                                    88
+T. Bills                                  88
+T. Bonds                                  88
+dtype: int64
+
+  Analyzing Sheet: Sheet11
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  The sheet is empty. Skipping...
+
+  Analyzing Sheet: Sheet12
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  The sheet is empty. Skipping...
+
+  Analyzing Sheet: Sheet13
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  The sheet is empty. Skipping...
+
+  Analyzing Sheet: Sheet14
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  The sheet is empty. Skipping...
+
+  Analyzing Sheet: Sheet15
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  The sheet is empty. Skipping...
+
+  Analyzing Sheet: Sheet16
+/Users/alisadiq/.pyenv/versions/3.10.12/lib/python3.10/site-packages/openpyxl/worksheet/header_foote
+r.py:48: UserWarning: Cannot parse header or footer so it will be ignored                             warn("""Cannot parse header or footer so it will be ignored""")
+  The sheet is empty. Skipping...
+
+Processing File: Labor Force Statistics from the Current Population Survey.xlsx
+Sheet Names: ['BLS Data Series']
+
+  Analyzing Sheet: BLS Data Series
+  First 5 rows:
+   Year  Jan  Feb  Mar  Apr  May  Jun  Jul  Aug  Sep   Oct  Nov  Dec
+0  2008  5.0  4.9  5.1  5.0  5.4  5.6  5.8  6.1  6.1   6.5  6.8  7.3
+1  2009  7.8  8.3  8.7  9.0  9.4  9.5  9.5  9.6  9.8  10.0  9.9  9.9
+2  2010  9.8  9.8  9.9  9.9  9.6  9.4  9.4  9.5  9.5   9.4  9.8  9.3
+3  2011  9.1  9.0  9.0  9.1  9.0  9.1  9.0  9.0  9.0   8.8  8.6  8.5
+4  2012  8.3  8.3  8.2  8.2  8.2  8.2  8.2  8.1  7.8   7.8  7.7  7.9
+
+  Basic Statistics:
+              Year        Jan        Feb        Mar  ...        Sep        Oct        Nov        Dec
+count    15.000000  15.000000  15.000000  15.000000  ...  15.000000  15.000000  15.000000  15.000000
+mean   2015.000000   6.120000   6.073333   6.126667  ...   6.186667   6.126667   6.093333   6.040000
+std       4.472136   2.050505   2.096414   2.074838  ...   2.195406   2.155547   2.179275   2.169529
+min    2008.000000   3.600000   3.500000   3.700000  ...   3.500000   3.600000   3.600000   3.500000
+25%    2011.500000   4.350000   4.350000   4.400000  ...   4.500000   4.350000   4.200000   4.000000
+50%    2015.000000   5.700000   5.500000   5.400000  ...   5.900000   5.700000   5.800000   5.600000
+75%    2018.500000   7.900000   8.000000   7.850000  ...   7.800000   7.500000   7.300000   7.600000
+max    2022.000000   9.800000   9.800000   9.900000  ...   9.800000  10.000000   9.900000   9.900000
+
+[8 rows x 13 columns]
+
+  Missing Values:
+Year    0
+Jan     0
+Feb     0
+Mar     0
+Apr     0
+May     0
+Jun     0
+Jul     0
+Aug     0
+Sep     0
+Oct     0
+Nov     0
+Dec     0
+dtype: int64
+
+Processing File: US Business Cycle Expansions and Contractions.xlsx
+Sheet Names: ['NBER Chronology']
+
+  Analyzing Sheet: NBER Chronology
+  First 5 rows:
+                          Peak month  (Peak Quarter)  ...              Unnamed: 7
+0  Red indicates that the turning point quarter d...  ...  Duration, peak to peak
+1                                                NaN  ...                     NaN
+2                                 June 1857 (1857Q2)  ...                     NaN
+3                              October 1860 (1860Q3)  ...                      40
+4                                April 1865 (1865Q1)  ...                      54
+
+[5 rows x 8 columns]
+
+  Basic Statistics:
+                               Peak month  (Peak Quarter)  ... Unnamed: 7
+count                                                  40  ...         38
+unique                                                 40  ...         33
+top     Red indicates that the turning point quarter d...  ...         40
+freq                                                    1  ...          3
+
+[4 rows x 8 columns]
+
+  Missing Values:
+Peak month  (Peak Quarter)       3
+Trough month (Trough Quarter)    8
+Unnamed: 2                       8
+Unnamed: 3                       7
+Contraction                      4
+Expansion                        4
+Cycle                            4
+Unnamed: 7                       5
+dtype: int64
+
+
+
+Based on the data provided, the datasets do not explicitly include traditional technical indicators (e.g., moving averages, RSI, MACD, Bollinger Bands, etc.) commonly used in financial analysis. However, the datasets contain raw data (e.g., prices, returns, bond yields, inflation rates) that can be used to calculate technical indicators.
+
+Observations:
+Raw Data for Technical Indicators:
+
+S&P 500 & Raw Data: Includes historical prices, dividends, and returns, which can be used to compute indicators like moving averages, momentum, or volatility.
+Small Cap Returns: Contains return data that can be used to calculate rolling averages or Sharpe ratios.
+Gold Prices: Historical gold prices can be used to derive trend-following indicators like MACD or Bollinger Bands.
+Economic Indicators:
+
+The datasets include macroeconomic data (e.g., CPI, labor force statistics, business cycles) that are not technical indicators but can provide valuable context for market conditions.
+Missing Explicit Indicators:
+
+The datasets do not seem to include precomputed technical indicators like RSI, stochastic oscillators, or ATR. These would need to be derived from the raw data.
+Potential for Feature Engineering:
+
+The raw data provides a strong foundation for creating technical indicators. For example:
+Momentum: Derived from price changes over time.
+Volatility: Calculated using rolling standard deviations of returns.
+Trend Indicators: Moving averages or exponential moving averages can be computed from price data.

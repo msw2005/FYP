@@ -1,0 +1,474 @@
+Running the Portfolio Allocation System on Another Computer
+This guide explains how to set up and run the Portfolio Allocation System on a different computer, focusing on path configurations in the models.ipynb file and app2.py files.
+
+Prerequisites
+Before running the code, make sure to install all required packages:
+
+System Structure
+The project has the following structure:
+
+Path Configuration Changes
+1. Modifying Models Directory Paths
+First, create a config.py file at the project root to store all path configurations:
+import os
+import platform
+
+# Detect operating system and set appropriate base directory
+if platform.system() == 'Windows':
+    # Windows paths - update with your Windows path
+    BASE_DIR = r"C:\path\to\your\project"
+else:
+    # macOS/Linux paths - update with your path
+    BASE_DIR = r"/path/to/your/project"
+
+# Define other directories relative to BASE_DIR
+DATA_DIR = os.path.join(BASE_DIR, "Data")
+PROCESSED_DATA_DIR = os.path.join(DATA_DIR, "Processed")
+MODELS_DIR = os.path.join(BASE_DIR, "Models")
+RESULTS_DIR = os.path.join(BASE_DIR, "Results")
+DEEP_RL_DIR = os.path.join(MODELS_DIR, "DeepRL")
+
+# Ensure critical directories exist
+os.makedirs(PROCESSED_DATA_DIR, exist_ok=True)
+os.makedirs(RESULTS_DIR, exist_ok=True)
+os.makedirs(DEEP_RL_DIR, exist_ok=True)
+
+
+
+2. Updating models.py
+Create or update the models.py file to use the new centralized path configuration:
+
+import sys
+import os
+
+# Add parent directory to path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Import path configuration
+from config import *
+
+# Import necessary modules
+import pandas as pd
+import numpy as np
+import torch
+import gym
+from gym import spaces
+from stable_baselines3 import PPO
+from stable_baselines3.common.vec_env import DummyVecEnv
+from stable_baselines3.common.callbacks import StopTrainingOnNoModelImprovement, EvalCallback
+import matplotlib.pyplot as plt
+from scipy.optimize import minimize
+
+# Calculate max drawdown
+def calculate_max_drawdown(portfolio_values):
+    portfolio_values = np.array(portfolio_values)
+    if len(portfolio_values) <= 1:
+        return 0.0
+    
+    cumulative_max = np.maximum.accumulate(portfolio_values)
+    drawdown = (portfolio_values - cumulative_max) / np.maximum(cumulative_max, 1e-10)
+    max_drawdown = np.min(drawdown) if len(drawdown) > 0 else 0
+    return abs(max_drawdown)
+
+# Custom Environment for Portfolio Allocation
+class PortfolioAllocationEnv(gym.Env):
+    def __init__(self, data, risk_aversion=3.0, window_size=30):
+        super(PortfolioAllocationEnv, self).__init__()
+        
+        # Make a copy of the data to avoid modifying the original
+        self.data = data.reset_index(drop=True).copy()
+        self.risk_aversion = risk_aversion
+        self.window_size = window_size
+        
+        # Ensure data has enough rows
+        if len(self.data) <= window_size + 10:
+            raise ValueError(f"Data has {len(self.data)} rows, need more than {window_size + 10}")
+        
+        self.current_step = window_size
+        self.max_steps = len(self.data) - 1
+        
+        # Define action space: continuous allocation between assets
+        self.action_space = spaces.Box(
+            low=0, high=1, shape=(1,), dtype=np.float32
+        )
+        
+        # Define observation space with market features
+        n_features = 7  # Using 7 features for state representation
+        self.observation_space = spaces.Box(
+            low=-5, high=5, shape=(n_features,), dtype=np.float32
+        )
+        
+        # Track portfolio performance
+        self.portfolio_value = 10000  # Initial portfolio value
+        self.portfolio_history = [self.portfolio_value]
+        self.weights_history = []
+        self.returns_history = []
+    
+    def reset(self):
+        self.current_step = self.window_size
+        self.portfolio_value = 10000
+        self.portfolio_history = [self.portfolio_value]
+        self.weights_history = []
+        self.returns_history = []
+        return self._get_observation()
+    
+    def _get_observation(self):
+        try:
+            obs = np.array([
+                float(self.data.loc[self.current_step, "SP500_Return"]),
+                float(self.data.loc[self.current_step, "Bond_Return"]),
+                float(self.data.loc[self.current_step, "SP500_Volatility"]),
+                float(self.data.loc[self.current_step, "Bond_Volatility"]),
+                float(self.data.loc[self.current_step, "SP500_RelToMA"]),
+                float(self.data.loc[self.current_step, "Bond_RelToMA"]),
+                float(self.data.loc[self.current_step, "RiskFreeRate"]) / 100.0
+            ], dtype=np.float32)
+            
+            # Check for NaN or Inf values
+            if np.isnan(obs).any() or np.isinf(obs).any():
+                print(f"Warning: NaN or Inf in observation at step {self.current_step}, replacing with zeros")
+                obs = np.nan_to_num(obs, nan=0.0, posinf=0.0, neginf=0.0)
+            
+            # Clip values to ensure they are within reasonable bounds
+            obs = np.clip(obs, -5.0, 5.0)
+            
+            return obs
+        except Exception as e:
+            print(f"Error getting observation at step {self.current_step}: {e}")
+            # Return a safe default observation
+            return np.zeros(7, dtype=np.float32)
+    
+    def step(self, action):
+        # Extract the weight for stocks from action
+        stock_weight = float(np.clip(action[0], 0.0, 1.0))
+        bond_weight = 1.0 - stock_weight
+        
+        # Store current weights
+        self.weights_history.append([stock_weight, bond_weight])
+        
+        # Calculate returns for next step
+        if self.current_step < self.max_steps:
+            try:
+                next_stock_return = float(self.data.loc[self.current_step + 1, "SP500_Return"])
+                next_bond_return = float(self.data.loc[self.current_step + 1, "Bond_Return"])
+                risk_free_rate = float(self.data.loc[self.current_step, "RiskFreeRate"]) / 100.0 / 252.0
+                
+                # Safety checks - replace NaN values
+                if np.isnan(next_stock_return) or np.isinf(next_stock_return):
+                    next_stock_return = 0.0
+                if np.isnan(next_bond_return) or np.isinf(next_bond_return):
+                    next_bond_return = 0.0
+                if np.isnan(risk_free_rate) or np.isinf(risk_free_rate):
+                    risk_free_rate = 0.0
+                
+                # Clip returns to prevent extreme values
+                next_stock_return = np.clip(next_stock_return, -0.1, 0.1)
+                next_bond_return = np.clip(next_bond_return, -0.1, 0.1)
+                
+                # Calculate portfolio return
+                portfolio_return = stock_weight * next_stock_return + bond_weight * next_bond_return
+                
+                self.returns_history.append(portfolio_return)
+                
+                # Update portfolio value
+                self.portfolio_value *= (1.0 + portfolio_return)
+                self.portfolio_history.append(self.portfolio_value)
+                
+                # Calculate reward
+                excess_return = portfolio_return - risk_free_rate
+                
+                if len(self.returns_history) >= 20:
+                    recent_returns = np.array(self.returns_history[-20:])
+                    volatility = np.std(recent_returns)
+                    
+                    recent_portfolio = np.array(self.portfolio_history[-20:])
+                    if len(recent_portfolio) > 1:
+                        peak = np.maximum.accumulate(recent_portfolio)
+                        drawdown = (recent_portfolio - peak) / np.maximum(peak, 1e-10)
+                        max_drawdown = abs(np.min(drawdown))
+                    else:
+                        max_drawdown = 0.0
+                    
+                    # Adjust reward based on risk aversion
+                    reward = (
+                        excess_return - 
+                        self.risk_aversion * volatility**2 - 
+                        self.risk_aversion * max_drawdown * 0.5
+                    )
+                else:
+                    reward = excess_return
+                
+                # Clip reward to reasonable range
+                reward = np.clip(reward, -1.0, 1.0)
+                
+                # Move to the next step
+                self.current_step += 1
+                done = self.current_step >= self.max_steps
+                
+                return self._get_observation(), float(reward), done, {
+                    "portfolio_value": float(self.portfolio_value),
+                    "weights": [float(stock_weight), float(bond_weight)],
+                    "returns": float(portfolio_return)
+                }
+            
+            except Exception as e:
+                print(f"Error in environment step: {e}")
+                self.current_step += 1
+                return self._get_observation(), 0.0, True, {
+                    "portfolio_value": float(self.portfolio_value),
+                    "weights": [float(stock_weight), float(bond_weight)],
+                    "returns": 0.0
+                }
+        
+        else:
+            # If we've reached the end of the data
+            return self._get_observation(), 0.0, True, {
+                "portfolio_value": float(self.portfolio_value),
+                "weights": [float(stock_weight), float(bond_weight)],
+                "returns": 0.0
+            }
+    
+    def render(self, mode='human'):
+        print(f"Step: {self.current_step}, Portfolio Value: {self.portfolio_value:.2f}")
+
+# The rest of your functions go here (load_and_preprocess_data, train_portfolio_rl, evaluate_model, etc.)
+def load_and_preprocess_data(split_date="2020-01-01", risk_aversion_override=None):
+    # Load datasets
+    sp500_file = os.path.join(PROCESSED_DATA_DIR, "processed_sp500_data.csv")
+    bond_file = os.path.join(PROCESSED_DATA_DIR, "processed_bond_data.csv")
+    risk_free_file = os.path.join(PROCESSED_DATA_DIR, "processed_risk_free_rate_data.csv")
+    
+    sp500_data = pd.read_csv(sp500_file)
+    bond_data = pd.read_csv(bond_file)
+    risk_free_rate_data = pd.read_csv(risk_free_file)
+    
+    # Process data as in your original code
+    # ...
+
+def train_portfolio_rl(train_data, risk_aversion, total_timesteps=10000, save_path=None):
+    # Create environment
+    env = DummyVecEnv([lambda: PortfolioAllocationEnv(train_data, risk_aversion=risk_aversion)])
+    
+    # Create and train PPO model as in your original code
+    # ...
+
+def evaluate_model(model, test_data, risk_aversion):
+    # Evaluate the model as in your original code
+    # ...
+
+def plot_results(evaluation_results, save_path=None, benchmark_weights=None):
+    # Plot results as in your original code
+    # ...
+
+def main():
+    # Load and preprocess data
+    train_data, test_data, risk_aversion, scaler = load_and_preprocess_data()
+    
+    # Define file paths using centralized configuration
+    model_path = os.path.join(DEEP_RL_DIR, "ppo_portfolio_model.zip")
+    plot_path = os.path.join(RESULTS_DIR, "portfolio_performance.png")
+    
+    # Run model training and evaluation
+    # ...
+
+if __name__ == "__main__":
+    main()
+
+)
+3. Updating app.py and app2.py
+Update the Flask application to use the config file:
+
+import os
+import pandas as pd
+import numpy as np
+import sys
+import traceback
+from flask import Flask, render_template, jsonify, request, send_from_directory
+from flask_cors import CORS
+from scipy.optimize import minimize
+
+# Add parent directory to path and import config
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from config import *
+
+# Import model functions
+try:
+    from Models.MVO import optimize_portfolio, calculate_statistics
+except ImportError:
+    print("Warning: Could not import from Models.MVO. Checking alternate paths...")
+    # Try to import from a different location if needed
+
+app = Flask(__name__)
+CORS(app)  # Enable CORS for API access from frontend
+
+# Ensure results directory exists
+os.makedirs(RESULTS_DIR, exist_ok=True)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
+
+# API endpoints
+@app.route('/api/portfolio_metrics')
+def get_portfolio_metrics():
+    # Your implementation using RESULTS_DIR
+    # ...
+
+@app.route('/api/portfolio_allocations')
+def get_portfolio_allocations():
+    # Your implementation using RESULTS_DIR
+    # ...
+
+@app.route('/api/model_comparison')
+def get_model_comparison():
+    # Your implementation using RESULTS_DIR
+    # ...
+
+@app.route('/api/run_mvo', methods=['POST'])
+def run_mvo():
+    # Your implementation using PROCESSED_DATA_DIR and RESULTS_DIR
+    # ...
+
+@app.route('/api/run_inverse_optimization', methods=['POST'])
+def run_inverse_optimization():
+    # Your implementation
+    # ...
+
+@app.route('/api/run_deep_rl', methods=['POST'])
+def run_deep_rl():
+    try:
+        # Get parameters from request
+        data = request.get_json()
+        risk_aversion = float(data.get('risk_aversion', 0.1))
+        
+        # Run Deep RL model
+        # ...
+        
+        return jsonify({
+            'success': True,
+            'message': 'Deep RL model executed successfully',
+            # Additional response data
+        })
+        
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        })
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)
+
+
+)
+4. Creating a Run Script
+Create a single script to run the project:
+
+import os
+import sys
+import subprocess
+import argparse
+
+# Add the project root to the Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from config import BASE_DIR, MODELS_DIR, RESULTS_DIR
+
+def run_flask_app():
+    """Run the Flask application"""
+    app_path = os.path.join(BASE_DIR, 'Backend', 'app.py')
+    subprocess.run([sys.executable, app_path])
+
+def run_mvo_model():
+    """Run the MVO model"""
+    model_path = os.path.join(MODELS_DIR, 'MVO.py')
+    subprocess.run([sys.executable, model_path])
+
+def run_deep_rl_model():
+    """Run the Deep RL model"""
+    model_path = os.path.join(MODELS_DIR, 'models.py')
+    subprocess.run([sys.executable, model_path])
+
+def run_tests():
+    """Run the test suite"""
+    test_path = os.path.join(BASE_DIR, 'Testing', 'run_tests.py')
+    subprocess.run([sys.executable, test_path])
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description='Run Portfolio Allocation System')
+    parser.add_argument('component', choices=['app', 'mvo', 'deep-rl', 'tests', 'all'],
+                        help='Component to run (app, mvo, deep-rl, tests, or all)')
+    
+    args = parser.parse_args()
+    
+    if args.component == 'app' or args.component == 'all':
+        run_flask_app()
+    
+    if args.component == 'mvo' or args.component == 'all':
+        run_mvo_model()
+    
+    if args.component == 'deep-rl' or args.component == 'all':
+        run_deep_rl_model()
+    
+    if args.component == 'tests' or args.component == 'all':
+        run_tests()
+
+
+
+5. Converting Jupyter Notebook to Python Script
+To run models.ipynb on another computer, it's best to convert it to a Python script first:
+jupyter nbconvert --to python Models/models.ipynb
+
+Or use the existing models.py file and ensure it contains all the functionality from the notebook.
+
+Steps to Run on Another Computer
+Clone or copy the entire project to the new computer.
+
+Update the config.py file with the correct BASE_DIR for the new computer.
+
+Install all required packages:
+pip install -r Backend/requirements.txt
+
+
+Create required directories if they don't exist:
+mkdir -p Data/Processed Models/DeepRL Results
+
+Copy the data files to the appropriate directories.
+
+Run the project components:
+
+# To run the Flask app
+python run.py app
+
+# To run the MVO model
+python run.py mvo
+
+# To run the Deep RL model
+python run.py deep-rl
+
+# To run all tests
+python run.py tests
+
+# To run everything
+python run.py all
+
+
+
+all
+Troubleshooting Common Issues
+Path Issues: If you encounter path-related errors, check that the BASE_DIR in config.py is correctly set for your system.
+
+Missing Data Files: Ensure all required data files are present in the Data/Processed directory.
+
+Package Installation: If you encounter import errors, make sure all required packages are installed.
+
+CUDA Issues (for Deep RL): If you have CUDA errors, try setting os.environ["CUDA_VISIBLE_DEVICES"] = "" in your script to force CPU usage.
+
+Permission Issues: Ensure you have write permissions for the Results directory.
+
+This guide should help you successfully run the portfolio allocation system on any computer with minimal changes to the code base.
