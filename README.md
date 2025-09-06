@@ -1,3 +1,7 @@
+Author: M Sadiq Warsi
+Date Submitted (Original Version): May 7th, 2025
+
+
 Portfolio Allocation System with Deep Reinforcement Learning
 Project Overview
 This project implements a sophisticated portfolio allocation system that compares traditional Mean-Variance Optimization (MVO) with advanced Deep Reinforcement Learning (RL) approaches. The system processes historical financial data, builds and trains portfolio allocation models, and presents results through an interactive web interface, allowing users to explore different risk preferences and allocation strategies.
