@@ -6,7 +6,7 @@ Treasury Bond Yields and Returns: Provides insights into fixed-income securities
 Gold Prices: A common hedge against market volatility and inflation.
 Labor Force Statistics: Useful for macroeconomic context, which can influence market trends.
 Business Cycle Data: Helps identify periods of economic expansion and contraction, which are critical for risk modeling.
-
+...
 2. Time-Series Nature
 Many datasets are time-series in nature (e.g., monthly or yearly data), which aligns well with deep learning models like LSTMs, GRUs, or Transformers for sequential data analysis.
 Time-series data is crucial for predicting future asset prices, returns, or risk metrics.
