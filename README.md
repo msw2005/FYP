@@ -54,7 +54,7 @@ Business cycle data
 Synthetic mutual fund allocation data
 The preprocessing pipeline includes:
 
-Date standardization across sources
+Date standardization across sources;
 Missing value handling with forward-fill techniques
 Feature engineering (volatility measures, moving averages, RSI)
 Normalization using RobustScaler
