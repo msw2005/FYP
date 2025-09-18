@@ -13,7 +13,7 @@ The system follows a modular architecture divided into several components:
 
 Data Processing Pipeline: Handles acquisition and preprocessing of financial data from various sources
 Model Implementation: Contains MVO, Inverse Optimization, and Deep RL implementations
-Web Backend: Flask API serving model results and handling model execution
+Web Backend: Flask API serving model results and handling model execution.
 Web Frontend: Interactive dashboard for model visualization and control
 Directory Structure
 ├── Backend/
