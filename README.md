@@ -145,7 +145,7 @@ The Model Comparison table shows side-by-side metrics
 Export results to CSV for further analysis
 Analyze Allocations:
 
-View the allocation chart showing stock vs bond weights
+View the allocation chart showing stock vs bond weights;
 See how allocations change over different time periods
 Technical Notes
 Deep RL Training: The system uses temporary Python scripts to execute Deep RL training, which may take several minutes to complete.
