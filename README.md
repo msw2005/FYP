@@ -1,5 +1,5 @@
 Author: M Sadiq Warsi
-Date Submitted (Original Version): May 7th, 2025.
+Date Submitted (Original Version): May 7th, 2025
 
 
 Portfolio Allocation System with Deep Reinforcement Learning;
