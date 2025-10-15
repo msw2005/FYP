@@ -6,7 +6,7 @@ import os
 # Define data folder
 data_folder = "/Users/alisadiq/Library/CloudStorage/OneDrive-UniversityofGreenwich/Documents/Year 3/FYP/Data"
 
-# Load datasets
+# Load respectiv relevant edatasets
 sp500_data = pd.read_csv(os.path.join(data_folder, "MarketData/Equity_Market_(S&P_500).csv"))
 bond_data = pd.read_csv(os.path.join(data_folder, "MarketData/ICE US Bonds Index Yield.csv"))
 bond_data.rename(columns={"observation_date": "Date"}, inplace=True)
