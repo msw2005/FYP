@@ -2,6 +2,7 @@ import os
 import pandas as pd
 
 def preprocess_mutual_funds_data(input_folder, output_folder):
+    
     """
     Preprocess individual mutual funds datasets and save them to a new folder.
 
