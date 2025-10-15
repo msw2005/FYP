@@ -120,7 +120,7 @@ Ensure the data directory structure matches the expected paths or update paths a
 
 Running the Application
 
-Start the Flask backend:
+Start the Flask backend,
 cd Backend
 python app.py
 
