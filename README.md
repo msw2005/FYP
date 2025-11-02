@@ -19,7 +19,7 @@ Web Backend: Flask API serving model results and handling model execution.
 Web Frontend: Interactive dashboard for model visualization and control
 Directory Structure
 ├── Backend/
-│   ├── app.py               # Main Flask application
+│   ├── app.py               # Main Flask applicationz
 │   ├── requirements.txt     # Python dependencies
 │   ├── Data/                # Processed data for backend use
 │   ├── Models/              # Model implementations
