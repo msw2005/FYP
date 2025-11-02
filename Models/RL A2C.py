@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import gym
 
-# 1. Preprocess the MutualFunds data
+# 1. Preprocess the MutualFunds data,
 
 def preprocess_mutual_funds_data(data_folder):
     """
