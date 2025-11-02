@@ -9,7 +9,7 @@ from scipy.optimize import minimize
 import sys
 from tabulate import tabulate
 
-# Configure paths
+# Configure paths,
 BASE_DIR = "/Users/alisadiq/Library/CloudStorage/OneDrive-UniversityofGreenwich/Documents/Year 3/FYP"
 DATA_DIR = os.path.join(BASE_DIR, "Data", "Processed")
 MODELS_DIR = os.path.join(BASE_DIR, "Models")
