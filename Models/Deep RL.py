@@ -12,7 +12,7 @@ def preprocess_datasets(data_folder):
     zz
 s
     Parameters:
-        data_folder (str): Path to the folder containing the datasets.
+        data_folder (str): Path to the folder containing the datasets.j
 
     Returns:
         pd.DataFrame: Preprocessed financial data with macroeconomic factors and technical indicators.
