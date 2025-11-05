@@ -135,6 +135,7 @@ Run Mean-Variance Optimization:
 
 Select the MVO model option
 Adjust the risk aversion parameter (default 3.0)
+
 Click "Run Model" and observe the results
 Run Deep Reinforcement Learning:
 
