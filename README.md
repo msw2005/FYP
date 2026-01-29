@@ -10,7 +10,7 @@ This project implements a sophisticated portfolio allocation system that compare
 
 
 System Architecture
-The system follows a modular architecture divided into several components:
+The system follows a modular architecture divided into several components,:
 
 Data Processing Pipeline: Handles acquisition and preprocessing of financial data from various sources
 
