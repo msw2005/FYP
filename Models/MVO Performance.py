@@ -5,7 +5,7 @@ from scipy.optimize import minimize
 import os
 
 # ----------------------
-# Configuration
+# configurtn
 # ---------------------
 data_folder = "/Users/alisadiq/Library/CloudStorage/OneDrive-UniversityofGreenwich/Documents/Year 3/FYP/Data/Processed"
 results_folder = "/Users/alisadiq/Library/CloudStorage/OneDrive-UniversityofGreenwich/Documents/Year 3/FYP/Results"
