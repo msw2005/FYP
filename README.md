@@ -19,7 +19,7 @@ Web Backend: Flask API serving model results and handling model execution.
 Web Frontend: Interactive dashboard for model visualization and control
 Directory Structure
 ├── Backend/
-│   ├── app.py               # Main Flask applicationz
+│   ├── app.py               # Main Flask applications
 │   ├── requirements.txt     # Python dependencies
 │   ├── Data/                # Processed data for backend use
 │   ├── Models/              # Model implementations
@@ -145,7 +145,7 @@ Click "Run Model" (this may take several minutes)
 Compare Model Performance:
 
 The Model Comparison table shows side-by-side metrics
-Export results to CSV for further analysis
+Export results to CSV for further analysis,
 Analyze Allocations:
 
 View the allocation chart showing stock vs bond weights;
