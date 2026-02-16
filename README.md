@@ -107,7 +107,7 @@ Clone the repository
 
 Install dependencies:
 
-Update path configurations in:
+Update path configurations in-
 # For Windows
 BASE_DIR = r"c:\path\to\project"
 # For macOS/Linux
