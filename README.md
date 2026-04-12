@@ -54,7 +54,7 @@ S&P 500 index data
 US Bond index data
 Risk-free rate data
 Damodaran expected returns data
-Business cycle data
+Business cycle data.
 Synthetic mutual fund allocation data
 The preprocessing pipeline includes:
 
