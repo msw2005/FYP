@@ -7,7 +7,7 @@ To run a specific test suite, use the -s/--suite argument:
     python run_tests.py --suite unit
     python run_tests.py --suite integration
     python run_tests.py --suite all (default)
-
+~~~
 For verbose output, add the -v/--verbose flag:
     python run_tests.py --verbose
 """
