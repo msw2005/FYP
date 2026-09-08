@@ -139,7 +139,7 @@ Adjust the risk aversion parameter (default 3.0)
 Click "Run Model" and observe the results
 Run Deep Reinforcement Learning:
 
-Select the Deep RL model option
+Select the Deep RL model option.
 Set a low risk aversion parameter (0.1-0.5) for better returns
 Click "Run Model" (this may take several minutes)
 Compare Model Performance:
